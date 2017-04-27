@@ -15,6 +15,11 @@ public class ToastUtils {
     private static Toast to;
 
     public final static void showToast(Context cx, String str, boolean debug) {
+        if (!debug) {
+            L.d(TAG, "This is not debug model!");
+            return;
+        }
+
         if (str == null) {
             L.d(TAG, "str is null!");
             return;
@@ -29,11 +34,6 @@ public class ToastUtils {
             if (AcUtils.finishing((Activity) cx)) {
                 return;
             }
-        }
-
-        if (!debug) {
-            L.d(TAG, "This is not debug model!");
-            return;
         }
 
         to = Toast.makeText(cx, str, Toast.LENGTH_SHORT);

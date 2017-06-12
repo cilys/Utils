@@ -13,7 +13,7 @@ public class Logs {
 	private static int level = ALL;
 	
 	public static void sysOut(String msg){
-		if(getLevel() >= INFO && msg != null){
+		if(getLevel() >= DEBUG && msg != null){
 			System.out.println(msg);
 		}
 	}

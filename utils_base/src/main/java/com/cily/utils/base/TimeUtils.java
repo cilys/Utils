@@ -10,7 +10,7 @@ public class TimeUtils {
 	public final static String FORMAT_SECOND = "yyyy-MM-dd HH:mm:ss";
 	
 	public final static String milToStr(long time, String format){
-		Logs.sysOut(StrUtils.join(TAG, "-->", "milToStr: time = ", time, "<--->format = ", format));
+//		Logs.sysOut(StrUtils.join(TAG, "-->", "milToStr: time = ", time, "<--->format = ", format));
 		if(StrUtils.isEmpty(format)){
 			format = FORMAT_SECOND;
 		}
@@ -29,7 +29,7 @@ public class TimeUtils {
 	}
 	
 	public final static long strToMil(String d, String format, long defValue){
-		Logs.sysOut(StrUtils.join(TAG, "-->", "milToStr: date = ", d, "<--->format = ", format, "<--->defValue = ", defValue));
+//		Logs.sysOut(StrUtils.join(TAG, "-->", "milToStr: date = ", d, "<--->format = ", format, "<--->defValue = ", defValue));
 		
 		if(StrUtils.isEmpty(format)){
 			format = FORMAT_SECOND;

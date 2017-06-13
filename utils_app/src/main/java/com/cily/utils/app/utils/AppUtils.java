@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 
+import com.cily.utils.app.utils.log.L;
 import com.cily.utils.base.StrUtils;
 
 /**

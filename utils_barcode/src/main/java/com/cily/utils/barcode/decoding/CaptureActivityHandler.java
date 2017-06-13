@@ -26,7 +26,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
-import com.cily.utils.app.utils.L;
+import com.cily.utils.app.utils.log.L;
 import com.cily.utils.barcode.activity.CaptureActivity;
 import com.cily.utils.barcode.camera.CameraManager;
 import com.cily.utils.barcode.view.ViewfinderResultPointCallback;

@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cily.utils.app.Init;
-import com.cily.utils.app.utils.L;
+import com.cily.utils.app.utils.log.L;
 import com.cily.utils.app.utils.ToastUtils;
 
 

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Build;
 
+import com.cily.utils.app.utils.log.L;
+
 /**
  * user:cily
  * time:2017/2/23

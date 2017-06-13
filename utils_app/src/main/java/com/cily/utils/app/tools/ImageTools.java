@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 import android.text.TextUtils;
 
-import com.cily.utils.app.utils.L;
+import com.cily.utils.app.utils.log.L;
 import com.cily.utils.base.StrUtils;
 import com.cily.utils.base.time.TimeUtils;
 

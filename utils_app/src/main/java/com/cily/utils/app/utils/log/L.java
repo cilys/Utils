@@ -1,4 +1,4 @@
-package com.cily.utils.app.utils;
+package com.cily.utils.app.utils.log;
 
 import android.annotation.SuppressLint;
 import android.util.Log;

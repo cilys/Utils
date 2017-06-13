@@ -27,7 +27,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.view.SurfaceHolder;
 
-import com.cily.utils.app.utils.L;
+import com.cily.utils.app.utils.log.L;
 
 /**
  * This object wraps the Camera service object and expects to be the only one talking to it. The

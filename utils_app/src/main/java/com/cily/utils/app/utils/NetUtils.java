@@ -10,6 +10,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 
+import com.cily.utils.app.utils.log.L;
 import com.cily.utils.base.StrUtils;
 
 

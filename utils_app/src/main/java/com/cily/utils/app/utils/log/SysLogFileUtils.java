@@ -1,4 +1,4 @@
-package com.cily.utils.app.utils;
+package com.cily.utils.app.utils.log;
 
 import android.content.Context;
 import android.os.Environment;
@@ -21,24 +21,24 @@ import java.io.InputStreamReader;
  * desc: 日志生成文件
  */
 
-public class LogFileUtils {
-    private static LogFileUtils util = null;
+public class SysLogFileUtils {
+    private static SysLogFileUtils util = null;
     private static String PATH_LOGCAT;
     private LogDumper mLogDumper = null;
     private int mPId;
 
-    public static LogFileUtils getInstance() {
+    public static SysLogFileUtils getInstance() {
         if (util == null) {
-            synchronized (LogFileUtils.class){
+            synchronized (SysLogFileUtils.class){
                 if (util == null) {
-                    util = new LogFileUtils();
+                    util = new SysLogFileUtils();
                 }
             }
         }
         return util;
     }
 
-    private LogFileUtils() {
+    private SysLogFileUtils() {
         mPId = android.os.Process.myPid();
     }
 
@@ -50,7 +50,7 @@ public class LogFileUtils {
         } else {
             folderPath = StrUtils.join(context.getFilesDir().getAbsolutePath(), File.separator, "Logcat");
         }
-        LogFileUtils.getInstance().start(folderPath,cmd);
+        SysLogFileUtils.getInstance().start(folderPath,cmd);
     }
 
     public void startLogcatToFile(Context context){
@@ -66,7 +66,7 @@ public class LogFileUtils {
             return;
         }
 
-        LogFileUtils.getInstance().stop();
+        SysLogFileUtils.getInstance().stop();
     }
 
     private void setFolderPath(String folderPath) {

@@ -20,7 +20,7 @@ import android.hardware.Camera;
 import android.os.Handler;
 import android.os.Message;
 
-import com.cily.utils.app.utils.L;
+import com.cily.utils.app.utils.log.L;
 
 
 final class AutoFocusCallback implements Camera.AutoFocusCallback {

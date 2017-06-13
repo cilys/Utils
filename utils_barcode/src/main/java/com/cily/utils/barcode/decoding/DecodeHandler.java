@@ -22,9 +22,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 
-import com.cily.utils.barcode.R;
+import com.cily.utils.app.utils.L;
 import com.cily.utils.barcode.activity.CaptureActivity;
 import com.cily.utils.barcode.camera.CameraManager;
 import com.cily.utils.barcode.camera.PlanarYUVLuminanceSource;
@@ -95,15 +94,15 @@ final class DecodeHandler extends Handler {
 
         if (rawResult != null) {
             long end = System.currentTimeMillis();
-            Log.d(TAG, "Found barcode (" + (end - start) + " ms):\n" + rawResult.toString());
-            Message message = Message.obtain(activity.getHandler(), R.id.decode_succeeded, rawResult);
+            L.d(TAG, "Found barcode (" + (end - start) + " ms):\n" + rawResult.toString());
+            Message message = Message.obtain(activity.getHandler(), Conf.DECODE_SUCCESS, rawResult);
             Bundle bundle = new Bundle();
             bundle.putParcelable(DecodeThread.BARCODE_BITMAP, source.renderCroppedGreyscaleBitmap());
             message.setData(bundle);
             //Log.d(TAG, "Sending decode succeeded message...");
             message.sendToTarget();
         } else {
-            Message message = Message.obtain(activity.getHandler(), R.id.decode_failed);
+            Message message = Message.obtain(activity.getHandler(), Conf.DECODE_FAILED);
             message.sendToTarget();
         }
     }

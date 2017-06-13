@@ -25,8 +25,9 @@ import android.graphics.Rect;
 import android.hardware.Camera;
 import android.os.Build;
 import android.os.Handler;
-import android.util.Log;
 import android.view.SurfaceHolder;
+
+import com.cily.utils.app.utils.L;
 
 /**
  * This object wraps the Camera service object and expects to be the only one talking to it. The
@@ -238,7 +239,7 @@ public final class CameraManager {
             int leftOffset = (screenResolution.x - width) / 2;
             int topOffset = (screenResolution.y - height) / 2;
             framingRect = new Rect(leftOffset, topOffset, leftOffset + width, topOffset + height);
-            Log.d(TAG, "Calculated framing rect: " + framingRect);
+            L.d(TAG, "Calculated framing rect: " + framingRect);
         }
         return framingRect;
     }

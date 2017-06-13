@@ -1,6 +1,7 @@
 package com.cily.utils.app;
 
-import com.cily.utils.base.Logs;
+import com.cily.utils.base.log.LogType;
+import com.cily.utils.base.log.Logs;
 
 /**
  * user:cily
@@ -29,8 +30,14 @@ public class Init {
     }
 
     public final static void init(boolean d){
-        initLog(d ? Logs.ALL : Logs.NONE);
+        initLog(d ? LogType.ALL : LogType.NONE);
         initDebug(d);
+    }
+    public final static void setConsoleLog(boolean c){
+        Logs.setConsoleLog(c);
+    }
+    public final static void setWriteLog(boolean w){
+        Logs.setWriteLog(w);
     }
 
     public final static void setShowToast(boolean s) {

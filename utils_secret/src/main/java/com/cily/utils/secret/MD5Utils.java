@@ -3,7 +3,7 @@ package com.cily.utils.secret;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 
-import com.cily.utils.base.Logs;
+import com.cily.utils.base.log.Logs;
 import com.cily.utils.base.StrUtils;
 
 public class MD5Utils {

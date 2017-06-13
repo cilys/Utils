@@ -1,5 +1,7 @@
 package com.cily.utils.base;
 
+import com.cily.utils.base.log.Logs;
+
 import java.util.Random;
 
 public class RandomUtils {

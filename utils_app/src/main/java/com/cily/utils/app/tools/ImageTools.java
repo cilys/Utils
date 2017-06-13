@@ -7,7 +7,7 @@ import android.text.TextUtils;
 
 import com.cily.utils.app.utils.L;
 import com.cily.utils.base.StrUtils;
-import com.cily.utils.base.TimeUtils;
+import com.cily.utils.base.time.TimeUtils;
 
 import java.io.File;
 import java.io.FileInputStream;

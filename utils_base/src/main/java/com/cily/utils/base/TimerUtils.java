@@ -1,5 +1,7 @@
 package com.cily.utils.base;
 
+import com.cily.utils.base.log.Logs;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
@@ -30,7 +32,7 @@ public class TimerUtils {
 			@Override
 			public void run() {
 				
-				Logs.sysOut("Ö´ÐÐÈÎÎñ");
+				Logs.sysOut("Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 //				throw new NullPointerException("123");
 			}
 		};
@@ -40,7 +42,7 @@ public class TimerUtils {
 //		TimerTask task = new TimerTask() {
 //			@Override
 //			public void run() {
-//				Logs.sysOut("Ö´ÐÐ¶¨Ê±ÈÎÎñ");
+//				Logs.sysOut("Ö´ï¿½Ð¶ï¿½Ê±ï¿½ï¿½ï¿½ï¿½");
 //			}
 //		};
 //		

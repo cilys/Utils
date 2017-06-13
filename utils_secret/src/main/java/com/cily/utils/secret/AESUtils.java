@@ -14,11 +14,10 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.cily.utils.base.Logs;
+import com.cily.utils.base.log.Logs;
 import com.cily.utils.base.StrUtils;
-
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import com.sun.base64.BASE64Decoder;
+import com.sun.base64.BASE64Encoder;
 
 public class AESUtils {
     public final static int KEY_SIZE_128 = 128;
@@ -135,7 +134,7 @@ public class AESUtils {
 
     public static void main(String[] args) {
         String secret = encode("123456", DEFAULT_SECRET);
-        System.out.println("加密：" + secret);
-        System.out.println("解密：" + decode(secret, DEFAULT_SECRET));
+        Logs.sysOut("加密：" + secret);
+        Logs.sysOut("解密：" + decode(secret, DEFAULT_SECRET));
     }
 }

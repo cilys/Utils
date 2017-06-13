@@ -5,7 +5,8 @@ import android.os.Environment;
 
 import com.cily.utils.app.Init;
 import com.cily.utils.base.StrUtils;
-import com.cily.utils.base.TimeUtils;
+import com.cily.utils.base.time.TimeType;
+import com.cily.utils.base.time.TimeUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -107,7 +108,7 @@ public class LogFileUtils {
             mPID = pid;
             try {
                 out = new FileOutputStream(new File(dir, StrUtils.join("logcat-", TimeUtils.milToStr(
-                        System.currentTimeMillis(), TimeUtils.FORMAT_DAY), ".log")), true);
+                        System.currentTimeMillis(), TimeType.SECOND_LINE_UNDER), ".log")), true);
             } catch (FileNotFoundException e) {
                 L.printException(e);
             }
@@ -141,7 +142,7 @@ public class LogFileUtils {
                         continue;
                     }
                     if (out != null && line.contains(mPID)) {
-                        out.write((TimeUtils.milToStr(System.currentTimeMillis(), TimeUtils.FORMAT_SECOND) + "  " + line + "\n").getBytes());
+                        out.write((TimeUtils.milToStr(System.currentTimeMillis(), TimeType.SECONDLINE_COLON) + "  " + line + "\n").getBytes());
                     }
                 }
             } catch (IOException e) {

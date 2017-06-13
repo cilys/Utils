@@ -20,7 +20,8 @@ import android.graphics.Point;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
+
+import com.cily.utils.app.utils.L;
 
 final class PreviewCallback implements Camera.PreviewCallback {
 
@@ -52,7 +53,7 @@ final class PreviewCallback implements Camera.PreviewCallback {
             message.sendToTarget();
             previewHandler = null;
         } else {
-            Log.d(TAG, "Got preview callback, but no handler for it");
+            L.d(TAG, "Got preview callback, but no handler for it");
         }
     }
 

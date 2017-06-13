@@ -25,9 +25,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
-import com.cily.utils.barcode.R;
+import com.cily.utils.app.utils.L;
 import com.cily.utils.barcode.activity.CaptureActivity;
 import com.cily.utils.barcode.camera.CameraManager;
 import com.cily.utils.barcode.view.ViewfinderResultPointCallback;
@@ -71,15 +70,15 @@ public final class CaptureActivityHandler extends Handler {
                 // When one auto focus pass finishes, start another. This is the closest thing to
                 // continuous AF. It does seem to hunt a bit, but I'm not sure what else to do.
                 if (state == State.PREVIEW) {
-                    CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
+                    CameraManager.get().requestAutoFocus(this, Conf.AUTO_FOCUS);
                 }
                 break;
             case Conf.REATART_PREVIEW:
-                Log.d(TAG, "Got restart preview message");
+                L.d(TAG, "Got restart preview message");
                 restartPreviewAndDecode();
                 break;
             case Conf.DECODE_SUCCESS:
-                Log.d(TAG, "Got decode succeeded message");
+                L.d(TAG, "Got decode succeeded message");
                 state = State.SUCCESS;
                 Bundle bundle = message.getData();
 
@@ -93,15 +92,15 @@ public final class CaptureActivityHandler extends Handler {
             case Conf.DECODE_FAILED:
                 // We're decoding as fast as possible, so when one decode fails, start another.
                 state = State.PREVIEW;
-                CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
+                CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), Conf.DECODE);
                 break;
             case Conf.RETURN_SCAN_RESULT:
-                Log.d(TAG, "Got return scan result message");
+                L.d(TAG, "Got return scan result message");
                 activity.setResult(Activity.RESULT_OK, (Intent) message.obj);
                 activity.finish();
                 break;
             case Conf.LAUNCH_PRODUCT_QUERY:
-                Log.d(TAG, "Got product query message");
+                L.d(TAG, "Got product query message");
                 String url = (String) message.obj;
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
@@ -113,7 +112,7 @@ public final class CaptureActivityHandler extends Handler {
     public void quitSynchronously() {
         state = State.DONE;
         CameraManager.get().stopPreview();
-        Message quit = Message.obtain(decodeThread.getHandler(), R.id.quit);
+        Message quit = Message.obtain(decodeThread.getHandler(), Conf.QUIT);
         quit.sendToTarget();
         try {
             decodeThread.join();
@@ -122,15 +121,15 @@ public final class CaptureActivityHandler extends Handler {
         }
 
         // Be absolutely sure we don't send any queued up messages
-        removeMessages(R.id.decode_succeeded);
-        removeMessages(R.id.decode_failed);
+        removeMessages(Conf.DECODE_SUCCESS);
+        removeMessages(Conf.DECODE_FAILED);
     }
 
     private void restartPreviewAndDecode() {
         if (state == State.SUCCESS) {
             state = State.PREVIEW;
-            CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
-            CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
+            CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), Conf.DECODE);
+            CameraManager.get().requestAutoFocus(this, Conf.AUTO_FOCUS);
             activity.drawViewfinder();
         }
     }

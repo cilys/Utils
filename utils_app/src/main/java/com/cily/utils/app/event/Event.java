@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.cily.utils.app.pools.Pools;
-import com.cily.utils.base.Logs;
+import com.cily.utils.base.log.Logs;
 
 
 /**

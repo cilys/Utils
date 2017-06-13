@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.cily.utils.base.StrUtils;
+import com.cily.utils.base.log.LogType;
 
 import java.util.Set;
 
@@ -151,7 +152,7 @@ public class SpUtils {
             ed.commit();
         }
 
-        if (L.getLevel() <= L.VERBOSE) {
+        if (L.getLevel() <= LogType.VERBOSE) {
             if (value == null) {
                 L.v(TAG, StrUtils.join("putSet: cx = ", cx, "<--->key = ", key, "<--->value = ", value));
             } else {

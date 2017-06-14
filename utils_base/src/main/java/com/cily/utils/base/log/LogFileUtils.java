@@ -42,9 +42,19 @@ public class LogFileUtils {
     }
 
     public void saveLog(String msg){
+        saveLogNow(msg, false);
+    }
+
+    public void stop(){
+        if (logRunnable != null){
+            logRunnable.stop();
+        }
+    }
+
+    public void saveLogNow(String msg, boolean writeNow){
         if (!inited || logRunnable == null || !logRunnable.isRunning()){
             throw new RuntimeException("It's must be init before used!");
         }
-        logRunnable.writeLog(msg);
+        logRunnable.writeLog(msg, writeNow);
     }
 }

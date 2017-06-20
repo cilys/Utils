@@ -48,9 +48,7 @@ public class Logs {
 			l = LogType.ALL;
 		}
 	}
-	public static void setWriteLog(boolean w){
-		writeLog = w;
-	}
+
 	public static boolean isWriteLog(){
 		return writeLog;
 	}
@@ -70,7 +68,7 @@ public class Logs {
 		if (StrUtils.isEmpty(filePath)){
 			return;
 		}
-		if (FileUtils.fileExist(filePath)){
+		if (!FileUtils.fileExist(filePath)){
 			return;
 		}
 
@@ -82,9 +80,24 @@ public class Logs {
 		}
 	}
 
+	public static void stop(){
+		LogFileUtils.getInstance().stop();
+	}
+
 	private static String filePath, fileName;
-	public static void setLogFile(String filePath, String fileName){
+	public static void setLogFile(boolean w, String filePath, String fileName){
+		Logs.writeLog = w;
 		Logs.filePath = filePath;
 		Logs.fileName = fileName;
+	}
+
+	protected static String appVersion, sysVersion, imei, deviceBrand, sysModel;
+	public static void setSysInfo(String appVersion, String sysVersion,
+								  String imei, String deviceBrand, String sysModel){
+		Logs.appVersion = appVersion;
+		Logs.sysVersion = sysVersion;
+		Logs.imei = imei;
+		Logs.deviceBrand = deviceBrand;
+		Logs.sysModel = sysModel;
 	}
 }

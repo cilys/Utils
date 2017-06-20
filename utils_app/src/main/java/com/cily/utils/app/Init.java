@@ -36,8 +36,8 @@ public class Init {
     public final static void setConsoleLog(boolean c){
         Logs.setConsoleLog(c);
     }
-    public final static void setWriteLog(boolean w){
-        Logs.setWriteLog(w);
+    public final static void setWriteLog(boolean w, String filePath, String fileName){
+        Logs.setLogFile(w, filePath, fileName);
     }
 
     public final static void setShowToast(boolean s) {

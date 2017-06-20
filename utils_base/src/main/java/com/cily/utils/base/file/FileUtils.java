@@ -16,16 +16,16 @@ import java.io.OutputStreamWriter;
 public class FileUtils {
 
     /**
-     * 保存文件
+     * save file
      * @param str
      * @param filePath
      * @param fileName
      * @param fileType
-     * @return  0写文件成功
-     *          -1字符串内容为空
-     *          -2文件路径为空
-     *          -3文件不存在
-     *          -4写文件出错
+     * @return  0   save file success
+     *          -1  The msg to write is null
+     *          -2  The filePath is null
+     *          -3  The file not found
+     *          -4  error
      */
     public static int saveToFile(String str, String filePath, String fileName,
                                   String fileType){
@@ -53,10 +53,12 @@ public class FileUtils {
             bw.write(str);
             return 0;
         }catch (FileNotFoundException e){
-            Logs.printException(e);
+            e.printStackTrace();
+//            Logs.printException(e);
             return -3;
         }catch (IOException e){
-            Logs.printException(e);
+//            Logs.printException(e);
+            e.printStackTrace();
             return -4;
         }finally {
             try{
@@ -68,9 +70,21 @@ public class FileUtils {
                     bw.close();
                 }
             }catch (IOException e){
-                Logs.printException(e);
+//                Logs.printException(e);
+                e.printStackTrace();
             }
         }
+    }
+
+    public static File getFs(String filePath){
+        if (StrUtils.isEmpty(filePath)){
+            return null;
+        }
+        return new File(filePath);
+    }
+
+    public static boolean fileExist(File f){
+        return f != null && f.exists();
     }
 
     public static boolean fileExist(String filePath){

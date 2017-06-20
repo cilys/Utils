@@ -42,5 +42,4 @@ dependencies {
     }
     //    compile 'com.squareup.okhttp3:okhttp:3.3.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.0'
-    compile project(':utils_app')
 }

@@ -1,8 +1,7 @@
 package com.cily.utils.base.log;
 
+import com.cily.utils.base.StrUtils;
 import com.cily.utils.base.file.FileUtils;
-
-import java.io.FileNotFoundException;
 
 /**
  * user:cily
@@ -12,16 +11,16 @@ import java.io.FileNotFoundException;
 
 public class LogRunnable implements Runnable{
     private boolean running = false;
-    private StringBuilder su;
+    private StringBuffer su;
     private String filePath, fileName, fileType;
-    private boolean writeNow = false;
+    private boolean writeNow = true;
 
     public LogRunnable(String filePath, String fileName, String fileType){
         this.filePath = filePath;
         this.fileName = fileName;
         this.fileType = fileType;
         running = true;
-        su = new StringBuilder();
+        su = new StringBuffer();
     }
 
     public LogRunnable(String filePath, String fileName, String fileType, boolean writeNow){
@@ -31,11 +30,19 @@ public class LogRunnable implements Runnable{
         running = true;
         this.writeNow = writeNow;
 
-        su = new StringBuilder();
+        su = new StringBuffer();
     }
 
     public void writeLog(String msg){
+        System.out.println("log data-" + msg);
+        if (StrUtils.isEmpty(msg)){
+            return;
+        }
+        System.out.println("LogRunnable = " + this + "---su = " + su +  "---size = " + su.length());
         su.append(msg);
+//        synchronized (this) {
+//            this.notify();
+//        }
     }
 
     public void writeLog(String msg, boolean write){
@@ -56,30 +63,39 @@ public class LogRunnable implements Runnable{
     public void run() {
         while (running){
             if (writeNow){
-                int res = FileUtils.saveToFile(su.toString(), filePath, fileName, fileType);
+                String str = su.toString();
+                System.out.println("writeNow = " + writeNow + "<--->str = " + str);
+                int res = FileUtils.saveToFile(str, filePath, fileName, fileType);
+                System.out.println("res = " + res);
                 if (0 == res){
-                    su.delete(0, su.length());
+//                    su.delete(0, su.length());
                 }else if (res == -2 || res == -3){
-                    su.delete(0, su.length());
+//                    su.delete(0, su.length());
                     running = false;
                 }
-                writeNow = false;
             }else {
                 if (su.length() >= 1024) {
+                    String str = su.toString();
+                    System.out.println("writeNow = " + writeNow + "<--->str = " + str);
+
                     int res = FileUtils.saveToFile(su.toString(), filePath, fileName, fileType);
+                    System.out.println("save file res = " + res);
+                    System.out.println("res = " + res);
                     if (0 == res) {
-                        su.delete(0, su.length());
+//                        su.delete(0, su.length());
                     } else if (res == -2 || res == -3) {
-                        su.delete(0, su.length());
+//                        su.delete(0, su.length());
                         running = false;
                     }
                 }
             }
 
-            try {
-                wait(500);
-            } catch (InterruptedException e) {
-                Logs.printException(e);
+            synchronized (this){
+                try {
+                    wait(500);
+                } catch (InterruptedException e) {
+                    Logs.printException(e);
+                }
             }
         }
     }

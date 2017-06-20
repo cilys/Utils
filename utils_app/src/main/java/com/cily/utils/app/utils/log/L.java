@@ -3,10 +3,13 @@ package com.cily.utils.app.utils.log;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
+import com.cily.utils.base.file.FileUtils;
 import com.cily.utils.base.io.StreamToStr;
 import com.cily.utils.base.log.LogType;
 import com.cily.utils.base.log.Logs;
 import com.cily.utils.base.StrUtils;
+import com.cily.utils.liteorm.DbUtils;
+import com.cily.utils.liteorm.LogBean;
 
 import java.util.List;
 import java.util.Set;
@@ -20,13 +23,18 @@ public class L extends Logs {
 
     @SuppressLint("DefaultLocale")
     private final static String getStackTrace() {
-        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-        int index = 6;
-        String className = stackTrace[index].getFileName();
-        String methodName = stackTrace[index].getMethodName();
-        int lineNumber = stackTrace[index].getLineNumber();
-        String methodNameShort = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
-        return String.format("[ # (%1$s:%2$s) # %3$s ] ", className, lineNumber, methodNameShort);
+        try{
+            StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+            int index = 6;
+            String className = stackTrace[index].getFileName();
+            String methodName = stackTrace[index].getMethodName();
+            int lineNumber = stackTrace[index].getLineNumber();
+            String methodNameShort = methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+            return String.format("[ # (%1$s:%2$s) # %3$s ] ", className, lineNumber, methodNameShort);
+        }catch (Exception e){
+            printException(e);
+        }
+        return "";
     }
 
     public final static void v(String tag, String msg) {
@@ -37,9 +45,7 @@ public class L extends Logs {
                 Log.v(tag, m);
             }
 
-            if (isWriteLog()){
-                writeLog(LogType.TYPE_VERBOSE, tag, m);
-            }
+            write(LogType.TYPE_VERBOSE, tag, m);
             m = null;
         }
     }
@@ -52,9 +58,7 @@ public class L extends Logs {
                 Log.d(tag, m);
             }
 
-            if (isWriteLog()){
-                writeLog(LogType.TYPE_DEBUG, tag, m);
-            }
+            write(LogType.TYPE_DEBUG, tag, m);
             m = null;
         }
     }
@@ -67,9 +71,7 @@ public class L extends Logs {
                 Log.i(tag, m);
             }
 
-            if (isWriteLog()){
-                writeLog(LogType.TYPE_INFO, tag, m);
-            }
+            write(LogType.TYPE_INFO, tag, m);
             m = null;
         }
     }
@@ -90,12 +92,10 @@ public class L extends Logs {
                 }
             }
 
-            if (isWriteLog()){
-                if (e == null) {
-                    writeLog(LogType.TYPE_WARN, tag, m);
-                }else {
-                    writeLog(LogType.TYPE_WARN, tag, m + StreamToStr.throwableToStr(e));
-                }
+            if (e == null) {
+                write(LogType.TYPE_WARN, tag, m);
+            }else {
+                write(LogType.TYPE_WARN, tag, m + StreamToStr.throwableToStr(e));
             }
             m = null;
         }
@@ -108,9 +108,8 @@ public class L extends Logs {
                 Log.e(tag, m);
             }
 
-            if (isWriteLog()){
-                writeLog(LogType.TYPE_ERROR, tag, m);
-            }
+            write(LogType.TYPE_ERROR, tag, m);
+
             m = null;
         }
     }
@@ -132,9 +131,9 @@ public class L extends Logs {
                 if (isConsoleLog()) {
                     L.i(tag, msg);
                 }
-                if (isWriteLog()){
-                    writeLog(LogType.TYPE_INFO, tag, msg);
-                }
+
+                write(LogType.TYPE_INFO, tag, msg);
+
                 msg = null;
             }
         }
@@ -158,10 +157,43 @@ public class L extends Logs {
                     L.i(tag, msg);
                 }
                 if (isWriteLog()){
-                    writeLog(LogType.TYPE_INFO, tag, msg);
+                    write(LogType.TYPE_INFO, tag, msg);
                 }
                 msg = null;
             }
+        }
+    }
+
+    public static void sysOut(String msg){
+        if(getLevel() >= LogType.DEBUG && msg != null){
+            if (isConsoleLog()) {
+                System.out.println(msg);
+            }
+            write(LogType.TYPE_DEBUG, LogType.TAG_SYS_OUT, msg);
+        }
+    }
+
+    private static void write(String logType, String tag, String msg){
+        if (StrUtils.isEmpty(msg)){
+            return;
+        }
+
+        if (!isWriteLog()){
+            return;
+        }
+
+        LogBean b = new LogBean(logType, tag, msg, appVersion, sysVersion, imei,
+                deviceBrand, sysModel);
+
+        DbUtils.insert(b);
+    }
+
+    public static void printException(Throwable e){
+        if(getLevel() >= LogType.EXCEPTION && e != null){
+            if (isConsoleLog()) {
+                e.printStackTrace();
+            }
+            write(LogType.TYPE_EXCEPTION, LogType.TAG_THROWABLE, StreamToStr.throwableToStr(e));
         }
     }
 

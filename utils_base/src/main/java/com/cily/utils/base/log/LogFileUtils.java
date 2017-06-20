@@ -2,6 +2,7 @@ package com.cily.utils.base.log;
 
 import com.cily.utils.base.file.FileUtils;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -30,7 +31,16 @@ public class LogFileUtils {
 
     private boolean inited = false;
     public void init(String filePath, String fileName, String fileType){
-        if (FileUtils.fileExist(filePath)){
+        if (inited){
+            return;
+        }
+
+        File fs = FileUtils.getFs(filePath);
+        if (!FileUtils.fileExist(fs)){
+            fs.mkdirs();
+        }
+
+        if (!FileUtils.fileExist(filePath)){
             throw new RuntimeException("The filePath {" + filePath + "} is not exists!");
         }
 

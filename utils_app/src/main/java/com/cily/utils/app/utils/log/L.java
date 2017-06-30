@@ -3,13 +3,12 @@ package com.cily.utils.app.utils.log;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
-import com.cily.utils.base.file.FileUtils;
+import com.cily.utils.app.sql.DbUtils;
+import com.cily.utils.app.sql.LogBean;
+import com.cily.utils.base.StrUtils;
 import com.cily.utils.base.io.StreamToStr;
 import com.cily.utils.base.log.LogType;
 import com.cily.utils.base.log.Logs;
-import com.cily.utils.base.StrUtils;
-import com.cily.utils.liteorm.DbUtils;
-import com.cily.utils.liteorm.LogBean;
 
 import java.util.List;
 import java.util.Set;
@@ -183,7 +182,7 @@ public class L extends Logs {
         }
 
         LogBean b = new LogBean(logType, tag, msg, appVersion, sysVersion, imei,
-                deviceBrand, sysModel);
+                deviceBrand, sysModel, sysSDK);
 
         DbUtils.insert(b);
     }

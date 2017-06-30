@@ -2,8 +2,14 @@ package com.cily.utils.app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
+import com.cily.utils.app.sql.LogBean;
+import com.cily.utils.app.utils.AppUtils;
 import com.cily.utils.app.utils.log.L;
+import com.cily.utils.base.io.StreamToStr;
+import com.cily.utils.base.log.BmobLogError;
+import com.cily.utils.base.log.LogType;
 
 /**
  * user:cily
@@ -15,15 +21,36 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     private final String TAG = this.getClass().getSimpleName();
     private Thread.UncaughtExceptionHandler mDefaultHandler;
     private Context cx;
+    private boolean restartApp = false;
+    private boolean postError = false;
+    private static CrashHandler ch;
 
-    private static class CH{
-        static CrashHandler ch = new CrashHandler();
+
+    private CrashHandler(boolean restartApp, boolean postError){
+        this.restartApp = restartApp;
+        this.postError = postError;
     }
 
-    private CrashHandler(){}
+    public static CrashHandler getInstace(boolean restartApp){
+        if (ch == null){
+            synchronized (CrashHandler.class) {
+                if (ch == null) {
+                    ch = new CrashHandler(restartApp, false);
+                }
+            }
+        }
+        return ch;
+    }
 
-    public static CrashHandler getInstace(){
-        return CH.ch;
+    public static CrashHandler getInstace(boolean restartApp, boolean postError){
+        if (ch == null){
+            synchronized (CrashHandler.class) {
+                if (ch == null) {
+                    ch = new CrashHandler(restartApp, postError);
+                }
+            }
+        }
+        return ch;
     }
 
     public void init(Context context) {
@@ -41,7 +68,16 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             mDefaultHandler.uncaughtException(t, e);
         } else {
             //退出程序
-            restartApp(cx);
+            if (restartApp) {
+                restartApp(cx);
+            }
+//            LogBean b = new LogBean(LogType.ERROR, "Crash",
+//                    StreamToStr.throwableToStr(e), AppUtils.getVersionName(cx),
+//                    Build.VERSION.SDK, )
+//            BmobLogError.postError("classes/error_log",
+//                    "6e4f6350d5d05748c2acccd0d1b6d6d7",
+//                    "a44ed5bdea6e5ebff6001feecf145d9c", );
+
 
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(1);

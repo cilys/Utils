@@ -27,6 +27,7 @@ public class LogBean implements Serializable {
     private String imei;
     private String deviceBrand;
     private String sysModel;
+    private String sysSDK;
 
     @Default("1")
     @Column("status")
@@ -39,7 +40,7 @@ public class LogBean implements Serializable {
 
     public LogBean(String logType, String tag, String logMsg,
                    String appVersionName, String sysVersion,
-                   String imei, String deviceBrand, String sysModel) {
+                   String imei, String deviceBrand, String sysModel, String sdk) {
 
         setLogType(logType);
         setTag(tag);
@@ -51,6 +52,7 @@ public class LogBean implements Serializable {
         setSysModel(sysModel);
         setStatus("1");
         setTime(TimeUtils.milToStr(System.currentTimeMillis(), null));
+        setSysSDK(sdk);
     }
 
     public int getId() {
@@ -139,5 +141,13 @@ public class LogBean implements Serializable {
 
     public void setSysModel(String sysModel) {
         this.sysModel = (sysModel == null ? "" : sysModel);
+    }
+
+    public String getSysSDK() {
+        return sysSDK;
+    }
+
+    public void setSysSDK(String sysSDK) {
+        this.sysSDK = sysSDK == null ? "" : sysSDK;
     }
 }

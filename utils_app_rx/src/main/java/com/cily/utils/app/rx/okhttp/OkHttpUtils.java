@@ -5,10 +5,8 @@ import com.cily.utils.app.Init;
 import com.cily.utils.app.utils.log.L;
 import com.cily.utils.base.StrUtils;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -36,14 +34,10 @@ public class OkHttpUtils {
             mLogInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         }
 
-        File cacheFile = new File(NetConf.getCacheDir(), "mHttpCache");
-        Cache mCache = new Cache(cacheFile, 5242880);  //5 * 1024 * 1024
-
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .addInterceptor(new HeaderInterceptor())
                 .writeTimeout(45, TimeUnit.SECONDS)
-                .readTimeout(45, TimeUnit.SECONDS)
-                .cache(mCache);
+                .readTimeout(45, TimeUnit.SECONDS);
         if (Init.isDebug()) {
             builder.addInterceptor(mLogInterceptor);
         }

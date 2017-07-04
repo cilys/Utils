@@ -13,7 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.cily.utils.app.rx.R;
+import com.cily.utils.app.*;
 import com.cily.utils.app.utils.AcUtils;
 import com.cily.utils.app.utils.ScreenUtils;
 
@@ -31,7 +31,7 @@ public class LoadingDialog {
     private TextView common_dialog_msg_tv;
 
     public LoadingDialog(Activity ac) {
-        this(ac, R.layout.default_dia_loading);
+//        this(ac, R.layout.default_dia_loading);
     }
 
     public LoadingDialog(Activity ac, @LayoutRes int layoutId){
@@ -43,7 +43,7 @@ public class LoadingDialog {
     }
 
     private void builder(@LayoutRes int layoutId) {
-        mDialog = new Dialog(ac, R.style.CommonDialogStyle);
+//        mDialog = new Dialog(ac, R.style.CommonDialogStyle);
         Window window = mDialog.getWindow();
         if (window != null) {
             WindowManager.LayoutParams params = window.getAttributes();
@@ -60,7 +60,7 @@ public class LoadingDialog {
     @NonNull
     private View getContentView(@LayoutRes int layoutId) {
         if (layoutId <= 0){
-            layoutId = R.layout.default_dia_loading;
+//            layoutId = R.layout.default_dia_loading;
         }
         rootView = View.inflate(ac, layoutId, null);
         return rootView;
@@ -69,7 +69,7 @@ public class LoadingDialog {
     public LoadingDialog setDefaultMsg(String msg) {
         if (common_dialog_msg_tv == null) {
             if (rootView != null) {
-                common_dialog_msg_tv = (TextView) rootView.findViewById(R.id.tv_msg_default_dia_loading_id);
+//                common_dialog_msg_tv = (TextView) rootView.findViewById(R.id.tv_msg_default_dia_loading_id);
             }
         }
 

@@ -22,21 +22,27 @@ public class NetWork {
         return RetrofitUtils.getInstance(false).getRetrofit().create(NetService.class);
     }
 
-    public static <T> void get(LifecycleProvider lp, String url, Map<String, String>map, ResultSubscriber<T> rs){
-        Observable o = getService().get(url, map).map(new BaseEntity()).compose(lp.bindToLifecycle());
+    public static <T> void get(LifecycleProvider lp, String url, Map<String, String>map_header,
+                               Map<String, String>map, ResultSubscriber<T> rs){
+
+        Observable o = getService().get(url, map_header, map)
+                .map(new BaseEntity()).compose(lp.bindToLifecycle());
 
         toSubscribe(o, rs);
     }
 
-    public static <T>void post(LifecycleProvider lp, String url, Map<String, String>map, ResultSubscriber<T> rs){
-        Observable o = getService().post(url, map).map(new BaseEntity()).compose(lp.bindToLifecycle());
+    public static <T>void post(LifecycleProvider lp, String url, Map<String, String>map_header,
+                               Map<String, String>map, ResultSubscriber<T> rs){
+        Observable o = getService().post(url, map_header, map)
+                .map(new BaseEntity()).compose(lp.bindToLifecycle());
 
         toSubscribe(o, rs);
     }
 
-    public static <T>void postForm(LifecycleProvider lp, String url, Map<String, String>map,
-                            ResultSubscriber<T> rs){
-        Observable o = getService().postForm(url, map, null).map(new BaseEntity()).compose(lp.bindToLifecycle());
+    public static <T>void postForm(LifecycleProvider lp, String url, Map<String, String>map_header,
+                                   Map<String, String>map, ResultSubscriber<T> rs){
+        Observable o = getService().postForm(url, map_header, map, null)
+                .map(new BaseEntity()).compose(lp.bindToLifecycle());
 
         toSubscribe(o, rs);
     }

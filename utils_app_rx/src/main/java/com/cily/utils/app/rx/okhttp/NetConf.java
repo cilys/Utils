@@ -39,8 +39,9 @@ public class NetConf {
         }
     }
 
-    public final static String NET_ERROR_UNKNOW = "未知异常";
-    public final static String NET_ERROR_TIME_OUT = "请求超时";
-    public final static String NET_ERROR_SERVER_ERROR = "服务器异常";
-    public final static String NET_CODE_SUCCESS = "0";
+    public final static String ERROR_UNKNOW = "未知异常";
+    public final static String ERROR_TIME_OUT = "请求超时";
+    public final static String ERROR_SERVER_ERROR = "服务器异常";
+    public final static String ERROR_CONNECTION_REFUSED = "拒绝连接";
+    public final static String CODE_SUCCESS = "0";
 }

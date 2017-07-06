@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="@dimen/dp_default_dia_loading_size"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/dp_default_dia_min_height"
+    android:gravity="center">
+
+    <RelativeLayout
+        android:layout_width="@dimen/dp_default_dia_loading_size"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/dp_default_dia_min_height"
+        android:background="@drawable/bg_round_white_10"
+        >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提示"
+            android:textSize="@dimen/dp_textsize_normal"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/x30"/>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_round_bottom_light_gray_10"
+            >
+
+            <TextView
+                android:id="@+id/tv_bottom_left"
+                style="@style/style_dialog_bottom_btn"
+                android:layout_weight="1"
+                android:text="确定"/>
+
+            <View
+                style="@style/style_dialog_splite_line_v" />
+
+            <TextView
+                android:id="@+id/tv_bottom_right"
+                style="@style/style_dialog_bottom_btn"
+                android:layout_weight="1"
+                android:text="取消"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_splite_line"
+            style="@style/style_dialog_splite_line_h"
+            android:layout_below="@+id/tv_title" />
+
+        <EditText
+            android:id="@+id/ed_msg"
+            style="@style/style_dialog_msg"
+            android:layout_below="@+id/view_splite_line"
+            android:layout_above="@+id/ll_bottom" />
+
+    </RelativeLayout>
+
+</LinearLayout>

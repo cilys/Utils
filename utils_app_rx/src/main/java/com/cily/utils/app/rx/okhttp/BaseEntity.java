@@ -3,7 +3,7 @@ package com.cily.utils.app.rx.okhttp;
 import rx.functions.Func1;
 
 /**
- * user:xuli
+ * user:cily
  * time:2017/2/22
  * desc:
  */

@@ -16,6 +16,6 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        CrashHandler.getInstace().init(this);
+        CrashHandler.getInstace(false).init(this);
     }
 }

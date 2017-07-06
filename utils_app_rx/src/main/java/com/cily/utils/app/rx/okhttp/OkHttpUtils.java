@@ -21,6 +21,10 @@ public class OkHttpUtils {
     private final String TAG = this.getClass().getSimpleName();
     private static OkHttpUtils mUtils;
     private static OkHttpClient mOkHttpClient;
+    private final static long DEFAULT_TIME_OUT = 45;
+    private static long timeOutConn = DEFAULT_TIME_OUT;
+    private static long timeOutWrite = DEFAULT_TIME_OUT;
+    private static long timeOutRead = DEFAULT_TIME_OUT;
 
     private OkHttpUtils() {
         HttpLoggingInterceptor mLogInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -53,6 +57,18 @@ public class OkHttpUtils {
             }
         }
         return mUtils;
+    }
+
+    public static void setTimeOutConn(long timeOutConn) {
+        OkHttpUtils.timeOutConn = timeOutConn;
+    }
+
+    public static void setTimeOutWrite(long timeOutWrite) {
+        OkHttpUtils.timeOutWrite = timeOutWrite;
+    }
+
+    public static void setTimeOutRead(long timeOutRead) {
+        OkHttpUtils.timeOutRead = timeOutRead;
     }
 
     public OkHttpClient getOkHttpClient() {

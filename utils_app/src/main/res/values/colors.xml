@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_default_bg_dia_loading">#FEFEFE</color>
+    <color name="color_default_solid_dia_loading">#CFCFCF</color>
+
+    <color name="color_light_gray">#DFDFDF</color>
+    <color name="color_light_blue">#58f</color>
+
+    <color name="color_default_dia_title">#A111</color>
+    <color name="color_default_dia_msg">#9111</color>
+    <color name="color_default_dia_bottom_btn">#9111</color>
+
+
+</resources>

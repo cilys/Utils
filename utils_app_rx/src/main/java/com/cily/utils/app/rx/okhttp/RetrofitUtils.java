@@ -25,6 +25,12 @@ public class RetrofitUtils {
                 .build();
     }
 
+    /**
+     * 获取Retrofit对象
+     * @param reset
+     * 如果需要设置超时时间，必须在此方法前设置
+     * @return
+     */
     public static RetrofitUtils getInstance(boolean reset) {
         if (reset) {
             mUtils = null;

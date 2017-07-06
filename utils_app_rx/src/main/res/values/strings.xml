@@ -1,5 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Utils_App_Rx</string>
-
-    <string name="text_default_loading_please_wait">正在加载，请耐心等待…</string>
+    <string name="str_default_app_update_title">版本更新</string>
+    <string name="str_default_app_update_msg">发现新版本，是否更新？</string>
+    <string name="str_default_app_update_normal">更新</string>
+    <string name="str_default_app_update_force">强制更新</string>
+    <string name="str_default_app_update_ignore">忽略</string>
 </resources>

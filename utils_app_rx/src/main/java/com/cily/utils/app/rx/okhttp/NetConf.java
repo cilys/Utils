@@ -14,9 +14,13 @@ import java.io.File;
  */
 
 public class NetConf {
+    private static String baseUrl;
+    public static void setBaseUrl(String url){
+        baseUrl = url;
+    }
 
     public static String getBaseUrl(){
-        return "http://192.168.112.40:8080";
+        return baseUrl;
     }
 
     private static String cacheDir = null;

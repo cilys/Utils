@@ -18,7 +18,7 @@ package com.cily.utils.barcode.camera;
 
 import android.os.IBinder;
 
-import com.cily.utils.app.utils.log.L;
+import com.cily.utils.log.L;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

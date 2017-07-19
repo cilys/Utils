@@ -4,10 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.StringDef;
 import android.support.annotation.StringRes;
 
-import com.cily.utils.app.utils.log.L;
+import com.cily.utils.log.L;
 
 /**
  * user:cily

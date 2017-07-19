@@ -2,7 +2,8 @@ package com.cily.utils.all;
 
 import android.app.Application;
 
-import com.cily.utils.app.CrashHandler;
+//import com.cily.utils.app.CrashHandler;
+
 
 /**
  * user:cily
@@ -16,6 +17,6 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
 
-        CrashHandler.getInstace(false).init(this);
+//        CrashHandler.getInstace(false).init(this);
     }
 }

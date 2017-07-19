@@ -7,7 +7,7 @@ import android.view.View;
 import com.cily.utils.app.event.Event;
 import com.cily.utils.app.rx.FragmentRxEvent;
 import com.cily.utils.app.rx.RxBus;
-import com.cily.utils.app.utils.log.L;
+import com.cily.utils.log.L;
 
 import rx.Subscription;
 import rx.functions.Action1;

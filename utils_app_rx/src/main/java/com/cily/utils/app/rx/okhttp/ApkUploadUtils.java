@@ -4,15 +4,13 @@ import android.app.Activity;
 import android.view.View;
 
 import com.cily.utils.app.dia.DoubleButtonDialog;
-import com.cily.utils.app.dia.SingleButtonDialog;
 import com.cily.utils.app.rx.R;
 import com.cily.utils.app.rx.ac.BaseOkHttpActivity;
 import com.cily.utils.app.rx.bean.AppVersionBean;
 import com.cily.utils.app.utils.AcUtils;
 import com.cily.utils.app.utils.AppUtils;
-import com.cily.utils.app.utils.log.L;
+import com.cily.utils.log.L;
 import com.cily.utils.base.StrUtils;
-import com.trello.rxlifecycle.LifecycleProvider;
 
 import java.util.Map;
 

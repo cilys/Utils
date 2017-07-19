@@ -1,15 +1,21 @@
-package com.cily.utils.app;
+package com.cily.utils.log;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
+import android.util.Log;
 
-import com.cily.utils.app.sql.LogBean;
-import com.cily.utils.app.utils.AppUtils;
-import com.cily.utils.app.utils.log.L;
-import com.cily.utils.base.io.StreamToStr;
-import com.cily.utils.base.log.BmobLogError;
-import com.cily.utils.base.log.LogType;
+import com.cily.utils.base.HttpUtils;
+import com.cily.utils.base.StrUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * user:cily
@@ -78,10 +84,77 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 //                    "6e4f6350d5d05748c2acccd0d1b6d6d7",
 //                    "a44ed5bdea6e5ebff6001feecf145d9c", );
 
+            if (postError){
+                if (StrUtils.isEmpty(logUrl)){
+                    return;
+                }
+                List<LogBean> l = DbUtils.search(10);
+                if (l == null || l.size() < 1){
+                    return;
+                }
+                JSONArray ja = new JSONArray();
+                for (LogBean b : l){
+                    JSONObject jo = new JSONObject();
+                    Field[] fs = b.getClass().getDeclaredFields();
+                    if (fs != null){
+                        for (Field f : fs){
+                            try {
+                                jo.put("\"" + f.getName() + "\"", f.get(f.getName()));
+                            } catch (JSONException e1) {
+                                logEx("JSONException", e1);
+                            } catch (IllegalAccessException e1) {
+                                logEx("IllegalAccessException", e1);
+                            }
+                        }
+                    }
+                    ja.put(jo);
+                }
+                if (ja == null || ja.length() < 1){
+                    return;
+                }
+                Map<String, String>param = new HashMap<>();
+                param.put(HttpUtils.JSON_BODY, ja.toString());
+                try {
+                    HttpUtils.post(logUrl, false, header, param);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
 
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(1);
         }
+    }
+
+    private boolean debug = false;
+
+    public void setDebug(boolean debug) {
+        this.debug = debug;
+    }
+
+    private void logEx(String msg, Throwable t){
+        if (t == null){
+            return;
+        }
+        if (debug){
+            Log.e(TAG, "" + msg, t);
+        }
+    }
+
+    private String logUrl;
+    private Map<String, String>header;
+
+    public void setLogUrl(String logUrl) {
+        this.logUrl = logUrl;
+    }
+
+    public void setHeader(Map<String, String> map){
+        if (map == null){
+            return;
+        }
+        header = null;
+
+        header = map;
     }
 
     private boolean handleException(Throwable ex) {
@@ -100,5 +173,4 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         cx.startActivity(intent);
     }
-
 }

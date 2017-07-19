@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
-import com.cily.utils.app.utils.log.L;
+import com.cily.utils.log.L;
 import com.cily.utils.base.StrUtils;
 import com.cily.utils.base.log.LogType;
 
@@ -164,6 +164,31 @@ public class SpUtils {
                 }
                 L.v(TAG, StrUtils.join("putSet: cx = ", cx, "<--->key = ", key, "<--->value = ", su.toString()));
             }
+        }
+    }
+
+    public final static void remove(Context cx, String... keys){
+        if (keys == null){
+            return;
+        }
+        SharedPreferences sp = sp(cx);
+        if (sp != null) {
+            SharedPreferences.Editor ed = sp.edit();
+            for (String s : keys) {
+                if (!TextUtils.isEmpty(s)) {
+                    ed.remove(s);
+                }
+            }
+            ed.commit();
+        }
+    }
+
+    public final static void clearAll(Context cx){
+        SharedPreferences sp = sp(cx);
+        if (sp != null) {
+            SharedPreferences.Editor ed = sp.edit();
+            ed.clear();
+            ed.commit();
         }
     }
 

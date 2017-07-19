@@ -1,4 +1,4 @@
-package com.cily.utils.app.sql;
+package com.cily.utils.log;
 
 import com.cily.utils.base.time.TimeUtils;
 import com.litesuits.orm.db.annotation.Column;

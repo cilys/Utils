@@ -23,7 +23,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-import com.cily.utils.app.utils.log.L;
+import com.cily.utils.log.L;
 import com.cily.utils.barcode.activity.CaptureActivity;
 import com.cily.utils.barcode.camera.CameraManager;
 import com.cily.utils.barcode.camera.PlanarYUVLuminanceSource;

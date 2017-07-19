@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.cily.utils.app.fg.BaseLazyFragment;
-import com.cily.utils.app.utils.log.L;
+import com.cily.utils.log.L;
 import com.trello.rxlifecycle.LifecycleProvider;
 import com.trello.rxlifecycle.LifecycleTransformer;
 import com.trello.rxlifecycle.RxLifecycle;

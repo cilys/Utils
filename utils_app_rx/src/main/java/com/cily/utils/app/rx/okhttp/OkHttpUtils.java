@@ -2,7 +2,7 @@ package com.cily.utils.app.rx.okhttp;
 
 
 import com.cily.utils.app.Init;
-import com.cily.utils.app.utils.log.L;
+import com.cily.utils.log.L;
 import com.cily.utils.base.StrUtils;
 
 import java.util.concurrent.TimeUnit;

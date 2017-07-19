@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.os.StatFs;
 
-import com.cily.utils.app.utils.log.L;
+import com.cily.utils.log.L;
 
 import java.io.BufferedReader;
 import java.io.File;

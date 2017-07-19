@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.cily.utils.app.utils.log.L;
+import com.cily.utils.log.L;
 
 /**
  * user:cily

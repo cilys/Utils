@@ -1,10 +1,8 @@
-package com.cily.utils.app.utils.log;
+package com.cily.utils.log;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
 
-import com.cily.utils.app.sql.DbUtils;
-import com.cily.utils.app.sql.LogBean;
 import com.cily.utils.base.StrUtils;
 import com.cily.utils.base.io.StreamToStr;
 import com.cily.utils.base.log.LogType;

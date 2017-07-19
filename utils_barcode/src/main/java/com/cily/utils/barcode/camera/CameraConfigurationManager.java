@@ -23,7 +23,7 @@ import android.os.Build;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.cily.utils.app.utils.log.L;
+import com.cily.utils.log.L;
 
 import java.util.regex.Pattern;
 

@@ -1,9 +1,10 @@
-package com.cily.utils.app.sql;
+package com.cily.utils.log;
 
 import android.content.Context;
 import android.os.Environment;
 
 import com.litesuits.orm.LiteOrm;
+import com.litesuits.orm.db.assit.QueryBuilder;
 
 import java.io.File;
 import java.util.List;
@@ -62,5 +63,12 @@ public class DbUtils {
 
     public static List<LogBean> searchAll(){
         return liteOrm == null ? null : liteOrm.query(LogBean.class);
+    }
+
+    public static List<LogBean> search(int limit){
+        if (limit < 1){
+            return searchAll();
+        }
+        return liteOrm == null ? null : liteOrm.query(new QueryBuilder<LogBean>(LogBean.class).limit(0, limit));
     }
 }

@@ -30,7 +30,7 @@ public class OkHttpUtils {
         HttpLoggingInterceptor mLogInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
-                L.i(TAG, StrUtils.join("", message));
+                L.d(TAG, StrUtils.join("", message));
             }
         });
 

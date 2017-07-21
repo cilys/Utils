@@ -15,17 +15,17 @@ import rx.Observable;
 /**
  * user:cily
  * time:2017/2/20
- * desc:
+ * desc:需自行实现
  */
 
 public interface NetService {
 
-    @GET
-    Observable<BaseResponseBean> get(@Url String url, @HeaderMap Map<String, String> map_header, @QueryMap Map<String, String> map);
-
-    @POST
-    Observable<BaseResponseBean> post(@Url String url, @HeaderMap Map<String, String> map_header, @QueryMap Map<String, String> map);
-
-    @POST
-    Observable<BaseResponseBean> postForm(@Url String url, @HeaderMap Map<String, String> map_header, @QueryMap Map<String, String> map, @Part("image") MultipartBody body);
+//    @GET
+//    Observable<BaseResponseBean> get(@Url String url, @HeaderMap Map<String, String> map_header, @QueryMap Map<String, String> map);
+//
+//    @POST
+//    Observable<BaseResponseBean> post(@Url String url, @HeaderMap Map<String, String> map_header, @QueryMap Map<String, String> map);
+//
+//    @POST
+//    Observable<BaseResponseBean> postForm(@Url String url, @HeaderMap Map<String, String> map_header, @QueryMap Map<String, String> map, @Part("image") MultipartBody body);
 }

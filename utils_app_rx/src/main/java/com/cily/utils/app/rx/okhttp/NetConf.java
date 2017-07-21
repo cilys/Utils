@@ -17,6 +17,7 @@ public class NetConf {
     private static String baseUrl;
     public static void setBaseUrl(String url){
         baseUrl = url;
+        RetrofitUtils.getInstance(true);
     }
 
     public static String getBaseUrl(){

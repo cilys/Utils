@@ -1,5 +1,6 @@
 package com.cily.utils.app.rx.okhttp;
 
+import com.cily.utils.app.rx.bean.AppVersionBean;
 import com.trello.rxlifecycle.LifecycleProvider;
 
 import java.util.Map;
@@ -18,18 +19,18 @@ import rx.schedulers.Schedulers;
 public class NetWork {
 
 
-//    private static NetService getService(){
-//        return RetrofitUtils.getInstance(false).getRetrofit().create(NetService.class);
-//    }
-//
-//    public static <T> void get(LifecycleProvider lp, String url, Map<String, String>map_header,
-//                               Map<String, String>map, ResultSubscriber<T> rs){
-//
-//        Observable o = getService().get(url, map_header, map)
-//                .map(new BaseEntity()).compose(lp.bindToLifecycle());
-//
-//        toSubscribe(o, rs);
-//    }
+    private static NetService getService(){
+        return RetrofitUtils.getInstance(false).getRetrofit().create(NetService.class);
+    }
+
+    public static void getAppUpdate(LifecycleProvider lp, String url, Map<String, String>map_header,
+                               Map<String, String>map, ResultSubscriber rs){
+
+        Observable o = getService().getAppUpdate(url, map_header, map)
+                .map(new BaseEntity<AppVersionBean>()).compose(lp.bindToLifecycle());
+
+        toSubscribe(o, rs);
+    }
 //
 //    public static <T>void post(LifecycleProvider lp, String url, Map<String, String>map_header,
 //                               Map<String, String>map, ResultSubscriber<T> rs){
@@ -47,11 +48,11 @@ public class NetWork {
 //        toSubscribe(o, rs);
 //    }
 //
-//    private static <T> void toSubscribe(Observable<T> observable, Observer<T> observer) {
-//        observable.subscribeOn(Schedulers.io())
-//                .subscribeOn(Schedulers.newThread())//子线程访问网络
-//                .unsubscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())//回调到主线程
-//                .subscribe(observer);
-//    }
+    protected static <T> void toSubscribe(Observable<T> observable, Observer<T> observer) {
+        observable.subscribeOn(Schedulers.io())
+                .subscribeOn(Schedulers.newThread())//子线程访问网络
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())//回调到主线程
+                .subscribe(observer);
+    }
 }

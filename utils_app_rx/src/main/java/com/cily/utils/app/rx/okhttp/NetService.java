@@ -1,6 +1,8 @@
 package com.cily.utils.app.rx.okhttp;
 
 
+import com.cily.utils.app.rx.bean.AppVersionBean;
+
 import java.util.Map;
 
 import okhttp3.MultipartBody;
@@ -20,8 +22,8 @@ import rx.Observable;
 
 public interface NetService {
 
-//    @GET
-//    Observable<BaseResponseBean> get(@Url String url, @HeaderMap Map<String, String> map_header, @QueryMap Map<String, String> map);
+    @GET
+    Observable<BaseResponseBean<AppVersionBean>> getAppUpdate(@Url String url, @HeaderMap Map<String, String> map_header, @QueryMap Map<String, String> map);
 //
 //    @POST
 //    Observable<BaseResponseBean> post(@Url String url, @HeaderMap Map<String, String> map_header, @QueryMap Map<String, String> map);

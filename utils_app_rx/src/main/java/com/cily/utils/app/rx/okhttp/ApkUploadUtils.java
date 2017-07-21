@@ -30,7 +30,7 @@ public class ApkUploadUtils {
         }
 
         if (rs == null) {
-            NetWork.get(ac, url, header, map_param, new ResultSubscriber<AppVersionBean>() {
+            NetWork.getAppUpdate(ac, url, header, map_param, new ResultSubscriber<AppVersionBean>() {
                 @Override
                 public void onSuccess(AppVersionBean bean) {
                     if (bean != null) {
@@ -53,7 +53,7 @@ public class ApkUploadUtils {
                 }
             });
         }else{
-            NetWork.get(ac, url, header, map_param, rs);
+            NetWork.getAppUpdate(ac, url, header, map_param, rs);
         }
     }
 

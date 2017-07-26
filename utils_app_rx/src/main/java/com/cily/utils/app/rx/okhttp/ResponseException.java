@@ -7,7 +7,22 @@ package com.cily.utils.app.rx.okhttp;
  */
 
 public class ResponseException extends RuntimeException {
+    private String errorCode;
+
     public ResponseException(String message) {
+        this(message, null);
+    }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public ResponseException(String message, String errorCode) {
         super(message);
+        this.errorCode = errorCode;
     }
 }

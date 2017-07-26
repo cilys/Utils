@@ -41,8 +41,12 @@ public class NetConf {
     }
 
     public final static String ERROR_UNKNOW = "未知异常";
+    public final static String CODE_ERROR_UNKNOW = "-11";
     public final static String ERROR_TIME_OUT = "请求超时";
+    public final static String CODE_ERROR_TIME_OUT = "-12";
     public final static String ERROR_SERVER_ERROR = "服务器异常";
+    public final static String CODE_SERVER_ERROR = "-13";
     public final static String ERROR_CONNECTION_REFUSED = "拒绝连接";
+    public final static String CODE_ERROR_CONNECTION_REFUSED = "-14";
     public final static String CODE_SUCCESS = "0";
 }

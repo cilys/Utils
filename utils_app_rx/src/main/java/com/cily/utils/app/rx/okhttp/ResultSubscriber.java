@@ -28,18 +28,19 @@ public abstract class ResultSubscriber<T> extends Subscriber<T>{
     @Override
     public void onError(Throwable e) {
         if (e instanceof SocketTimeoutException) {
-            onFailure(NetConf.ERROR_TIME_OUT);
+            onFailure(NetConf.CODE_ERROR_TIME_OUT, NetConf.ERROR_TIME_OUT);
         } else if (e instanceof ResponseException) {
-            onFailure(StrUtils.isEmpty(e.getMessage()) ? NetConf.ERROR_SERVER_ERROR : e.getMessage());
+            onFailure(((ResponseException) e).getErrorCode(), StrUtils.isEmpty(e.getMessage()) ? NetConf.ERROR_SERVER_ERROR : e.getMessage());
         } else {
             if (e.getMessage() != null && e.getMessage().contains("Connection refused")) {
-                onFailure(NetConf.ERROR_CONNECTION_REFUSED);
+                onFailure(NetConf.CODE_ERROR_CONNECTION_REFUSED, NetConf.ERROR_CONNECTION_REFUSED);
             } else {
-                onFailure(TextUtils.isEmpty(e.getMessage()) ? NetConf.ERROR_UNKNOW : e.getMessage());
+                onFailure(NetConf.CODE_ERROR_UNKNOW,
+                        TextUtils.isEmpty(e.getMessage()) ? NetConf.ERROR_UNKNOW : e.getMessage());
             }
         }
     }
 
     public abstract void onSuccess(T t);
-    public abstract void onFailure(String msg);
+    public abstract void onFailure(String errorCode, String msg);
 }

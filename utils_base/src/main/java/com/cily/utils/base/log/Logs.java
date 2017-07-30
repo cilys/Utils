@@ -91,10 +91,12 @@ public class Logs {
 		Logs.fileName = fileName;
 	}
 
-	protected static String appVersion, sysVersion, imei, deviceBrand, sysModel, sysSDK;
+	protected static String appName, appSign, appVersion, sysVersion, imei, deviceBrand, sysModel, sysSDK;
 	//sysModel手机型号，deviceBrand厂商，sysVersion系统版本，sdk版本
-	public static void setSysInfo(String appVersion, String sysVersion,
+	public static void setSysInfo(String appName, String appSign, String appVersion, String sysVersion,
 								  String imei, String deviceBrand, String sysModel, String sdk){
+		Logs.appName = appName;
+		Logs.appSign = appSign;
 		Logs.appVersion = appVersion;
 		Logs.sysVersion = sysVersion;
 		Logs.imei = imei;

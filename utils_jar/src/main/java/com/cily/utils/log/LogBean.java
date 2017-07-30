@@ -18,11 +18,14 @@ import java.io.Serializable;
 public class LogBean implements Serializable {
     @PrimaryKey(AssignType.AUTO_INCREMENT)
     private int id;
+    private String appName;
+    private String appSign;     //签名信息
+    private String platform;
     private String logType;
     private String tag;
     private String logMsg;
-    private String time;
-    private String appVersionName;
+    private String errorTime;
+    private String appVersion;
     private String sysVersion;
     private String imei;
     private String deviceBrand;
@@ -35,24 +38,61 @@ public class LogBean implements Serializable {
 
     public LogBean(){
         setStatus("1");
-        setTime(TimeUtils.milToStr(System.currentTimeMillis(), null));
+        setErrorTime(TimeUtils.milToStr(System.currentTimeMillis(), null));
     }
 
-    public LogBean(String logType, String tag, String logMsg,
-                   String appVersionName, String sysVersion,
-                   String imei, String deviceBrand, String sysModel, String sdk) {
+    public String getAppName() {
+        return appName;
+    }
 
+    public void setAppName(String appName) {
+        this.appName = (appName == null ? "" : appName);
+    }
+
+    public String getAppSign() {
+        return appSign;
+    }
+
+    public void setAppSign(String appSign) {
+        this.appSign = (appSign == null ? "" : appSign);
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = (platform == null || platform.trim().equals("") ? "android" : platform);
+    }
+
+    public String getAppVersion() {
+        return appVersion;
+    }
+
+    public void setAppVersion(String appVersion) {
+        this.appVersion = (appVersion == null ? "" : appVersion);
+    }
+
+    public LogBean(String appName, String appSign,
+                   String logType, String tag, String logMsg,
+                   String appVersion, String sysVersion, String imei,
+                   String deviceBrand, String sysModel, String sysSDK) {
+
+
+        setAppName(appName);
+        setAppSign(appSign);
+        setPlatform("android");
         setLogType(logType);
         setTag(tag);
         setLogMsg(logMsg);
-        setAppVersionName(appVersionName);
+        setAppVersion(appVersion);
         setSysVersion(sysVersion);
         setImei(imei);
         setDeviceBrand(deviceBrand);
         setSysModel(sysModel);
         setStatus("1");
-        setTime(TimeUtils.milToStr(System.currentTimeMillis(), null));
-        setSysSDK(sdk);
+        setErrorTime(TimeUtils.milToStr(System.currentTimeMillis(), null));
+        setSysSDK(sysSDK);
     }
 
     public int getId() {
@@ -87,13 +127,6 @@ public class LogBean implements Serializable {
         this.logMsg = (logMsg == null ? "" : logMsg);
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = (time == null ? "" : time);
-    }
 
     public String getStatus() {
         return status;
@@ -103,13 +136,7 @@ public class LogBean implements Serializable {
         this.status = (status == null ? "1" : status);
     }
 
-    public String getAppVersionName() {
-        return appVersionName;
-    }
 
-    public void setAppVersionName(String appVersionName) {
-        this.appVersionName = (appVersionName == null ? "" : appVersionName);
-    }
 
     public String getSysVersion() {
         return sysVersion;
@@ -149,5 +176,13 @@ public class LogBean implements Serializable {
 
     public void setSysSDK(String sysSDK) {
         this.sysSDK = sysSDK == null ? "" : sysSDK;
+    }
+
+    public String getErrorTime() {
+        return errorTime;
+    }
+
+    public void setErrorTime(String errorTime) {
+        this.errorTime = errorTime;
     }
 }

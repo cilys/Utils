@@ -175,11 +175,7 @@ public class L extends Logs {
             return;
         }
 
-        if (!isWriteLog()){
-            return;
-        }
-
-        LogBean b = new LogBean(logType, tag, msg, appVersion, sysVersion, imei,
+        LogBean b = new LogBean(Logs.appName, Logs.appSign, logType, tag, msg, appVersion, sysVersion, imei,
                 deviceBrand, sysModel, sysSDK);
 
         DbUtils.insert(b);

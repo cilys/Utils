@@ -1,1 +1,1 @@
-include ':app', ':utils_base', ':utils_secret', ':utils_app', ':utils_app_rx', ':utils_barcode', ':utils_jar', ':utils_log'
+include ':app', ':utils_base', ':utils_secret', ':utils_app', ':utils_app_rx', ':utils_barcode', ':utils_jar', ':utils_web_base'

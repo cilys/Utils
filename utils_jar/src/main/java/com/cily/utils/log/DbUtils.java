@@ -25,8 +25,14 @@ public class DbUtils {
     public static void init(Context cx, boolean saveLog){
         DbUtils.saveLog = saveLog;
 
+        if (cx == null){
+            return;
+        }
+
         if (liteOrm == null){
-            liteOrm = LiteOrm.newSingleInstance(cx, Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "db_log.db");
+            liteOrm = LiteOrm.newSingleInstance(cx,
+                    Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator
+                            + cx.getPackageName() + File.separator + "db_log.db");
         }
     }
 

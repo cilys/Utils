@@ -48,7 +48,7 @@ public class ApkUploadUtils {
                 }
 
                 @Override
-                public void onFailure(String msg) {
+                public void onFailure(String errorCode, String msg) {
                     L.w(TAG, "check onFailure = " + msg);
                 }
             });

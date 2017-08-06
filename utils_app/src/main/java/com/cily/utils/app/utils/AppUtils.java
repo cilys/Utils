@@ -68,6 +68,16 @@ public class AppUtils {
         return info.versionName;
     }
 
+    public final static String getAppName(Context cx){
+        PackageInfo info = getInfo(cx, 0);
+        if (info == null) {
+            L.v(TAG, "getAppName: info null");
+            return "unkown app";
+        }
+        return info.packageName;
+
+    }
+
     private final static PackageManager getPm(Context cx) {
         if (cx == null) {
             L.v(TAG, "getPm: cx null");

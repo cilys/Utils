@@ -21,7 +21,7 @@ public class ResponseException extends RuntimeException {
         this.errorCode = errorCode;
     }
 
-    public ResponseException(String message, String errorCode) {
+    public ResponseException(String errorCode, String message) {
         super(message);
         this.errorCode = errorCode;
     }

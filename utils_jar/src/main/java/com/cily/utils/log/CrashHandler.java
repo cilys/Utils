@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.cily.utils.base.HttpUtils;
 import com.cily.utils.base.StrUtils;
+import com.cily.utils.base.log.LogType;
+import com.cily.utils.base.log.Logs;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,6 +63,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     public void init(Context context) {
         cx = context;
+        if (cx == null){
+            return;
+        }
         //获取系统默认的UncaughtException处理器
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         //设置该CrashHandler为程序的默认处理器
@@ -69,6 +74,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     @Override
     public void uncaughtException(Thread t, Throwable e) {
+        L.printException(e);
         if (!handleException(e) && mDefaultHandler != null) {
             //如果用户没有处理则让系统默认的异常处理器来处理
             mDefaultHandler.uncaughtException(t, e);
@@ -84,77 +90,33 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 //                    "6e4f6350d5d05748c2acccd0d1b6d6d7",
 //                    "a44ed5bdea6e5ebff6001feecf145d9c", );
 
-            if (postError){
-                if (StrUtils.isEmpty(logUrl)){
-                    return;
-                }
-                List<LogBean> l = DbUtils.search(10);
-                if (l == null || l.size() < 1){
-                    return;
-                }
-                JSONArray ja = new JSONArray();
-                for (LogBean b : l){
-                    JSONObject jo = new JSONObject();
-                    Field[] fs = b.getClass().getDeclaredFields();
-                    if (fs != null){
-                        for (Field f : fs){
-                            try {
-                                jo.put("\"" + f.getName() + "\"", f.get(f.getName()));
-                            } catch (JSONException e1) {
-                                logEx("JSONException", e1);
-                            } catch (IllegalAccessException e1) {
-                                logEx("IllegalAccessException", e1);
-                            }
-                        }
-                    }
-                    ja.put(jo);
-                }
-                if (ja == null || ja.length() < 1){
-                    return;
-                }
-                Map<String, String>param = new HashMap<>();
-                param.put(HttpUtils.JSON_BODY, ja.toString());
-                try {
-                    HttpUtils.post(logUrl, false, header, param);
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-            }
+            new PostError().post(logUrl, getHeader(), debug);
 
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(1);
         }
     }
 
-    private boolean debug = false;
-
-    public void setDebug(boolean debug) {
-        this.debug = debug;
-    }
-
-    private void logEx(String msg, Throwable t){
-        if (t == null){
-            return;
-        }
-        if (debug){
-            Log.e(TAG, "" + msg, t);
-        }
-    }
-
     private String logUrl;
-    private Map<String, String>header;
 
     public void setLogUrl(String logUrl) {
         this.logUrl = logUrl;
     }
 
-    public void setHeader(Map<String, String> map){
-        if (map == null){
-            return;
-        }
-        header = null;
+    private Map<String, String> header;
 
-        header = map;
+    public void setHeader(Map<String, String> header) {
+        this.header = header;
+    }
+
+    public Map<String, String> getHeader() {
+        return header;
+    }
+
+    private boolean debug = false;
+
+    public void setDebug(boolean debug) {
+        this.debug = debug;
     }
 
     private boolean handleException(Throwable ex) {

@@ -85,6 +85,9 @@ public class HttpUtils {
 		out.close();
 
 		Logs.sysOut("conn.getResponseCode() = " + conn.getResponseCode());
+		if (conn.getResponseCode() != 200){
+			return null;
+		}
 		BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		
 		StringBuilder sbu = StrUtils.getStringBuilder();

@@ -23,17 +23,31 @@ public class DbUtils {
     }
 
     public static void init(Context cx, boolean saveLog){
+        init(cx, saveLog, false);
+    }
+
+    public static void init(Context cx, boolean saveLog, boolean saveExternal){
         DbUtils.saveLog = saveLog;
 
         if (cx == null){
             return;
         }
 
-        if (liteOrm == null){
-            liteOrm = LiteOrm.newSingleInstance(cx,
-                    Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator
-                            + cx.getPackageName() + File.separator + "db_log.db");
+        if (saveExternal) {
+            if (liteOrm == null) {
+                liteOrm = LiteOrm.newSingleInstance(cx,
+                        Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator
+                                + cx.getPackageName() + File.separator + "db_log.db");
+            }
+        }else {
+            if (liteOrm == null) {
+                liteOrm = LiteOrm.newSingleInstance(cx, "db_log.db");
+            }
         }
+    }
+
+    public static LiteOrm getLiteOrm(){
+        return liteOrm;
     }
 
     public static void setSaveLog(boolean saveLog){

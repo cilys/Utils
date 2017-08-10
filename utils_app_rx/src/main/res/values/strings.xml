@@ -6,4 +6,8 @@
     <string name="str_default_app_update_normal">更新</string>
     <string name="str_default_app_update_force">强制更新</string>
     <string name="str_default_app_update_ignore">忽略</string>
+    <string name="str_default_app_update_failed">更新失败</string>
+    <string name="str_exit">退出</string>
+    <string name="str_cancel">取消</string>
+
 </resources>

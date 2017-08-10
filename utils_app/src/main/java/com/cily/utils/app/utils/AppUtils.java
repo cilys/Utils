@@ -14,6 +14,7 @@ import android.telephony.TelephonyManager;
 import com.cily.utils.log.L;
 import com.cily.utils.base.StrUtils;
 
+import java.io.File;
 import java.security.MessageDigest;
 
 /**
@@ -166,6 +167,22 @@ public class AppUtils {
         }
 
         return getMessageDigest(arrayOfSignature[0].toByteArray());
+    }
+
+    public final static void installApk(Context cx, String url, boolean exit){
+        if (cx == null){
+            return;
+        }
+        if (StrUtils.isEmpty(url)){
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(new File(url)), "application/vnd.android.package-archive");
+        cx.startActivity(intent);
+
+        if (exit) {
+            exitApp();
+        }
     }
 
     private static Signature[] getRawSignature(Context paramContext, String paramString) {

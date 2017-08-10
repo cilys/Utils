@@ -28,7 +28,9 @@
 
     <style name="style_dialog_msg">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:minHeight">@dimen/dp_default_dia_min_height</item>
         <item name="android:layout_margin">@dimen/x5</item>
         <item name="android:textSize">@dimen/dp_textsize_normal</item>
         <item name="android:textColor">@color/color_default_dia_msg</item>

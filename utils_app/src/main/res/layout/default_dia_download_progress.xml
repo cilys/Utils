@@ -5,20 +5,50 @@
     android:layout_width="@dimen/dp_default_dia_loading_size"
     android:layout_height="wrap_content"
     android:minHeight="@dimen/dp_default_dia_min_height"
+    android:background="@drawable/bg_round_white_10"
     android:gravity="center">
 
-    <RelativeLayout
-        android:layout_width="@dimen/dp_default_dia_loading_size"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/dp_default_dia_min_height"
-        android:background="@drawable/bg_round_white_10"
-        >
+
 
         <TextView
             android:id="@+id/tv_title"
             style="@style/style_dialog_title"
             android:text="提示"
             android:layout_centerHorizontal="true" />
+
+    <View
+        android:id="@+id/view_splite_line"
+        style="@style/style_dialog_splite_line_h"
+        android:layout_below="@+id/tv_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="@dimen/x10"
+        android:minHeight="@dimen/dp_default_dia_min_height"
+        android:layout_centerVertical="true">
+
+        <ProgressBar
+            android:id="@+id/proBar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x10"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:progress="37"
+            android:progressDrawable="@color/color_light_blue"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_pro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/x10"
+            android:layout_below="@+id/proBar"
+            android:layout_alignParentRight="true"
+            android:text="123/456"
+            />
+    </RelativeLayout>
 
         <TextView
             android:id="@+id/tv_bottom"
@@ -27,35 +57,6 @@
             android:background="@drawable/bg_round_bottom_light_gray_10"
             android:text="确定"/>
 
-        <View
-            android:id="@+id/view_splite_line"
-            style="@style/style_dialog_splite_line_h"
-            android:layout_below="@+id/tv_title" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/x10"
-            android:layout_centerVertical="true">
 
-            <ProgressBar
-                android:id="@+id/proBar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/x10"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:progress="37"
-                android:progressDrawable="@color/color_light_blue"
-                />
-
-            <TextView
-                android:id="@+id/tv_pro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/x10"
-                android:layout_below="@+id/proBar"
-                android:layout_alignParentRight="true"
-                android:text="123/456"
-                />
-        </RelativeLayout>
-    </RelativeLayout>
 </LinearLayout>

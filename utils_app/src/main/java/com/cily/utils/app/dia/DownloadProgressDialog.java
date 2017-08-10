@@ -44,6 +44,8 @@ public class DownloadProgressDialog extends BaseDialog {
 
             if (listener != null){
                 tv_bottom.setOnClickListener(listener);
+            }else{
+                tv_bottom.setVisibility(View.GONE);
             }
         }
     }

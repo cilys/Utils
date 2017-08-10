@@ -5,14 +5,10 @@
     android:layout_width="@dimen/dp_default_dia_loading_size"
     android:layout_height="wrap_content"
     android:minHeight="@dimen/dp_default_dia_min_height"
+    android:background="@drawable/bg_round_white_10"
     android:gravity="center">
 
-    <RelativeLayout
-        android:layout_width="@dimen/dp_default_dia_loading_size"
-        android:layout_height="wrap_content"
-        android:minHeight="@dimen/dp_default_dia_min_height"
-        android:background="@drawable/bg_round_white_10"
-        >
+
 
         <TextView
             android:id="@+id/tv_title"
@@ -22,6 +18,16 @@
             android:textSize="@dimen/dp_textsize_normal"
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/x30"/>
+
+    <View
+        android:id="@+id/view_splite_line"
+        style="@style/style_dialog_splite_line_h"
+         />
+
+    <EditText
+        android:id="@+id/ed_msg"
+        style="@style/style_dialog_msg"
+         />
 
         <LinearLayout
             android:id="@+id/ll_bottom"
@@ -48,17 +54,8 @@
                 android:text="取消"/>
         </LinearLayout>
 
-        <View
-            android:id="@+id/view_splite_line"
-            style="@style/style_dialog_splite_line_h"
-            android:layout_below="@+id/tv_title" />
 
-        <EditText
-            android:id="@+id/ed_msg"
-            style="@style/style_dialog_msg"
-            android:layout_below="@+id/view_splite_line"
-            android:layout_above="@+id/ll_bottom" />
 
-    </RelativeLayout>
+
 
 </LinearLayout>

@@ -22,6 +22,10 @@ public class HttpUtils {
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
 		conn.connect();
+
+		if (conn.getResponseCode() != 200){
+			return null;
+		}
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream(),"utf-8"));
 		

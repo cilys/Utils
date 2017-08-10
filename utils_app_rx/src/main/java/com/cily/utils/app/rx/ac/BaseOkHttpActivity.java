@@ -88,4 +88,14 @@ public class BaseOkHttpActivity extends BaseActivity implements LifecycleProvide
         lifecycleSubject.onNext(ActivityEvent.DESTROY);
         super.onDestroy();
     }
+
+    @Override
+    public void disLoading() {
+        super.disLoading();
+    }
+
+    @Override
+    public void showToast(String str) {
+        super.showToast(str);
+    }
 }

@@ -117,7 +117,7 @@ public class ApkUploadUtils {
                         public void onClick(View v) {
                             L.v(TAG, "force update dialog left button be clicked!!!");
                             dia.dismiss();
-                            showDownloadingDialog(true);
+                            showDownloadingDialog(false);
                             downloadFile(handler, url, fileUrl, true);
                         }
                     });
@@ -156,7 +156,7 @@ public class ApkUploadUtils {
                     public void onClick(View v) {
                         L.v(TAG, "normal update dialog left button be clicked!!!");
                         dia.dismiss();
-                        showDownloadingDialog(false);
+                        showDownloadingDialog(true);
                         downloadFile(handler, url, fileUrl, false);
                     }
                 });

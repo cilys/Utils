@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="dp_default_dia_loading_size">@dimen/x500</dimen>
+    <dimen name="dp_default_dia_loading_size">@dimen/x640</dimen>
     <dimen name="dp_default_dia_loading_img_size">@dimen/x100</dimen>
-    <dimen name="dp_default_dia_min_height">@dimen/x200</dimen>
+    <dimen name="dp_default_dia_min_height">@dimen/x320</dimen>
 
     <dimen name="dp_textsize_normal">@dimen/x40</dimen>
     <dimen name="dp_textsize_large">@dimen/x46</dimen>

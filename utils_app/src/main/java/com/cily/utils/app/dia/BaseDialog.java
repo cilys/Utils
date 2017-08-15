@@ -43,7 +43,7 @@ public class BaseDialog {
         Window window = mDialog.getWindow();
         if (window != null) {
             WindowManager.LayoutParams params = window.getAttributes();
-            params.width = ScreenUtils.getScreenWidth(ac);
+            params.width = (int)(ScreenUtils.getScreenWidth(ac) * 0.8);
             params.height = ScreenUtils.getScreenHeight(ac);
             window.setGravity(Gravity.CENTER);
             params.x = 0;

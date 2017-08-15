@@ -2,8 +2,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="@dimen/dp_default_dia_loading_size"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:minWidth="@dimen/dp_default_dia_loading_size"
     android:minHeight="@dimen/dp_default_dia_min_height"
     android:background="@drawable/bg_round_white_10"
     android:gravity="center">

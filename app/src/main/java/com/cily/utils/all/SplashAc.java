@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.cily.utils.app.dia.DoubleButtonDialog;
+
 //import com.cily.utils.app.ac.BaseActivity;
 
 
@@ -22,5 +24,7 @@ public class SplashAc extends Activity {
 //                toAc(NavAc.class, null);
 //            }
 //        }, 3000);
+
+        new DoubleButtonDialog(this).show();
     }
 }

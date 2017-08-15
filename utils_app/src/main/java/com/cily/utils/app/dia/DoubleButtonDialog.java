@@ -19,7 +19,7 @@ public class DoubleButtonDialog extends BaseDialog {
     private EditText ed_msg;
 
     public DoubleButtonDialog(Activity ac) {
-        super(ac, R.layout.default_dia_singlebtn);
+        super(ac, R.layout.default_dia_doublebtn);
     }
 
     public DoubleButtonDialog(Activity ac, @LayoutRes int layoutId){
@@ -84,8 +84,4 @@ public class DoubleButtonDialog extends BaseDialog {
             }
         }
     }
-
-
-
-
 }

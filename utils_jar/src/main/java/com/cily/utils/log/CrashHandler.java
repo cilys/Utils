@@ -2,21 +2,7 @@ package com.cily.utils.log;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
-import com.cily.utils.base.HttpUtils;
-import com.cily.utils.base.StrUtils;
-import com.cily.utils.base.log.LogType;
-import com.cily.utils.base.log.Logs;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -66,6 +52,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         if (cx == null){
             return;
         }
+
         //获取系统默认的UncaughtException处理器
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         //设置该CrashHandler为程序的默认处理器

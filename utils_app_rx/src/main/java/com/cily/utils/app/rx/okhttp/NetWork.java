@@ -19,7 +19,7 @@ import rx.schedulers.Schedulers;
 public class NetWork {
 
 
-    private static NetService getService(){
+    protected static NetService getService(){
         return RetrofitUtils.getInstance(false).getRetrofit().create(NetService.class);
     }
 

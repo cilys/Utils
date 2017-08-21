@@ -25,6 +25,6 @@ public class BaseApplication extends Application {
                 NetUtils.getActiveMacAddress(this), AppUtils.getDeviceBrand(),
                 AppUtils.getSystemModel(), AppUtils.getSystemModel());
 
-        DbUtils.init(this);
+//        DbUtils.init(this);
     }
 }

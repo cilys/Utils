@@ -3,6 +3,7 @@ package com.cily.utils.app.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.cily.utils.log.L;
@@ -17,6 +18,25 @@ public class ToastUtils {
     private static Toast to;
 
     public final static void showToast(Context cx, String str, boolean debug) {
+        showToast(cx, str, LOCATION_DEFAULT, debug);
+    }
+
+    public final static void showToastNoDelay(Context cx, String str, boolean debug){
+        hideToast();
+        showToast(cx, str, debug);
+    }
+
+    public final static void hideToast(){
+        if (to != null){
+            to.cancel();
+        }
+        to = null;
+    }
+
+    public final static int LOCATION_DEFAULT = 0;
+    public final static int LOCATION_CENTER = 1;
+    public final static int LOCATION_TOP = 2;
+    public final static void showToast(Context cx, String str, int location, boolean debug){
         if (!debug) {
             L.d(TAG, "This is not debug model!");
             return;
@@ -39,18 +59,12 @@ public class ToastUtils {
         }
 
         to = Toast.makeText(cx, str, Toast.LENGTH_SHORT);
-        to.show();
-    }
-
-    public final static void showToastNoDelay(Context cx, String str, boolean debug){
-        hideToast();
-        showToast(cx, str, debug);
-    }
-
-    public final static void hideToast(){
-        if (to != null){
-            to.cancel();
+        if (location == LOCATION_CENTER){
+            to.setGravity(Gravity.CENTER, 0, 0);
+        }else if (location == LOCATION_TOP){
+            int height = ScreenUtils.getHeightInDp(cx);
+            to.setGravity(Gravity.TOP, 0, 4 / height);
         }
-        to = null;
+        to.show();
     }
 }

@@ -31,6 +31,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 if (ch == null) {
                     ch = new CrashHandler(restartApp, false);
                 }
+
             }
         }
         return ch;
@@ -61,7 +62,6 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
     @Override
     public void uncaughtException(Thread t, Throwable e) {
-        L.printException(e);
         if (!handleException(e) && mDefaultHandler != null) {
             //如果用户没有处理则让系统默认的异常处理器来处理
             mDefaultHandler.uncaughtException(t, e);

@@ -54,7 +54,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             return;
         }
 
-        Lt.setL(context.getPackageName());
+//        Lt.setL(context.getPackageName());
 
         //获取系统默认的UncaughtException处理器
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();

@@ -99,7 +99,7 @@ public class L extends Logs {
     }
 
     public final static void e(String tag, String msg) {
-        Lt.lm();
+//        Lt.lm();
         if (isPrint(tag, msg, LogType.ERROR)) {
             String m = getStackTrace() + msg;
             if (isConsoleLog()) {

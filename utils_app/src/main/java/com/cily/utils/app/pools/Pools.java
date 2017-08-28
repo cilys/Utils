@@ -113,6 +113,9 @@ public class Pools {
         public int size(){
             return mPoolSize;
         }
+        public Object[] pools(){
+            return mPool;
+        }
 
         public void gc(){
             mPool = null;

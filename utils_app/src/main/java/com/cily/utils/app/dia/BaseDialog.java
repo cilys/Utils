@@ -78,33 +78,33 @@ public class BaseDialog {
     }
 
     public void show() {
-        if (mDialog != null && !mDialog.isShowing()) {
+        if (!AcUtils.finishing(ac) && mDialog != null && !mDialog.isShowing()) {
             mDialog.show();
         }
     }
 
     public void dismiss() {
-        if (mDialog != null && mDialog.isShowing()) {
+        if (!AcUtils.finishing(ac) && mDialog != null && mDialog.isShowing()) {
             mDialog.dismiss();
         }
     }
 
     public BaseDialog setCancelable(boolean cancel) {
-        if (mDialog != null) {
+        if (!AcUtils.finishing(ac) && mDialog != null) {
             mDialog.setCancelable(cancel);
         }
         return this;
     }
 
     public BaseDialog setCanceledOnTouchOutside(boolean cancel) {
-        if (mDialog != null) {
+        if (!AcUtils.finishing(ac) && mDialog != null) {
             mDialog.setCanceledOnTouchOutside(cancel);
         }
         return this;
     }
 
     public void setOnDisListener(DialogInterface.OnDismissListener l){
-        if (mDialog != null) {
+        if (!AcUtils.finishing(ac) && mDialog != null) {
             if (l != null) {
                 mDialog.setOnDismissListener(l);
             }

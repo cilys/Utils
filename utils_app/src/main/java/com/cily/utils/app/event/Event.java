@@ -26,6 +26,17 @@ public final class Event implements Parcelable {
         Event e = sPool.acquire();
         return e == null ? new Event() : e;
     }
+    public static void reset(){
+        if (sPool != null){
+            if (sPool.pools() != null && sPool.pools().length > 0){
+                for (int i = 0; i < sPool.pools().length; i++){
+                    if (sPool.pools()[i] instanceof Event){
+                        ((Event)(sPool.pools()[i])).recycle();
+                    }
+                }
+            }
+        }
+    }
 
     public void recycle(){
         /**注释需放开*/
